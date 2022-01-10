@@ -28,8 +28,8 @@ public class MockTest {
 
         // Mockito can ensure whether a mock method is being called with required
         // arguments or not. It is done using the verify() method.
-        Mockito.verify(bookRepository,times(0)).save(book1);
-        Mockito.verify(bookRepository,times(1)).save(book2);
+        verify(bookRepository,times(0)).save(book1);
+        verify(bookRepository,times(1)).save(book2);
 
     }
 }
