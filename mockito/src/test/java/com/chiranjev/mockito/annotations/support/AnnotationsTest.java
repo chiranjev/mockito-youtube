@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 public class AnnotationsTest {
 
     @Mock
-    private BookRepository bookRepository;
+    private BookRepository bookRepository; // mock object
 
     @InjectMocks
     private BookService bookService; // this is the class under test
