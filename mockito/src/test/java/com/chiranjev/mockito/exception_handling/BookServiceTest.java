@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -53,6 +54,14 @@ public class BookServiceTest {
         Book book = new Book(null, "Mockito In Action", 600, LocalDate.now());
         doThrow(new SQLException("Database not available")).when(bookRepository).save(book);
         assertThrows(DatabaseWriteException.class, () -> bookService.addBook(book));
+    }
+
+    // exception handling in BDDMockito
+    @Test
+    public void testTotalPriceOfBooks_NegativeScenario_bddMockito() throws SQLException {
+//        when(bookRepository.findAllBooks()).thenThrow(SQLException.class);
+        given(bookRepository.findAllBooks()).willThrow(SQLException.class);
+        assertThrows(DatabaseReadException.class, () -> bookService.getTotalPriceOfBooks());
     }
 
 }
